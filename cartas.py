@@ -7,14 +7,52 @@ def Shuffle(x,y):
 def PrintShuffled(x,y):
     print("Player's Deck: " + str(x))
     print("Computer's Deck: " + str(y))
+    print("")
 
 def PrintFish(x,y):
-    print("Player's Cards: " + str(x[-1]) + " and " + str(y[-2]))
-    print("Computer's Cards: " + str(x[-1]) + " and " + str(y[-2]))
+    return x[:-3:-1], y[:-3:-1]
+
+def transformValues(card):
+    if card == "J":
+        return 11
+    elif card == "Q":
+        return 12
+    elif card == "K":
+        return 13
+    elif card == "A":
+        return 14
+    else:
+        return card
+
+def SumDeck(deck):
+    sumTotal = 0
+    for card in deck:
+        sumTotal += transformValues(card)
+    return sumTotal
+
+def Compare(deck1, deck2):
+    sum1 = SumDeck(deck1)
+    sum2 = SumDeck(deck2)
+
+    if sum1 > sum2:
+        return 1
+    elif sum1 < sum2:
+        return -1
+    else:
+        return 0
+
+
 
 DeckPlayer = [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
 DeckAI = DeckPlayer.copy()
 
 Shuffle(DeckPlayer, DeckAI)
 PrintShuffled(DeckPlayer, DeckAI)
-PrintFish(DeckPlayer, DeckAI)
+
+handPlayer, handAI = PrintFish(DeckPlayer, DeckAI)
+
+print("Player's Cards: " + str(handPlayer))
+print("Computer's Cards: " + str(handAI))
+print("")
+
+print("Your result is " + str(Compare(handPlayer, handAI)))
