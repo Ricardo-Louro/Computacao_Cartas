@@ -12,24 +12,6 @@ def PrintShuffled(x,y):
 def PrintFish(x,y):
     return x[:-3:-1], y[:-3:-1]
 
-def transformValues(card):
-    if card == "J":
-        return 11
-    elif card == "Q":
-        return 12
-    elif card == "K":
-        return 13
-    elif card == "A":
-        return 14
-    else:
-        return card
-
-def SumDeck(deck):
-    sumTotal = 0
-    for card in deck:
-        sumTotal += transformValues(card)
-    return sumTotal
-
 def Compare(deck1, deck2):
     sum1 = SumDeck(deck1)
     sum2 = SumDeck(deck2)
@@ -41,7 +23,23 @@ def Compare(deck1, deck2):
     else:
         return 0
 
+def SumDeck(deck):
+    sumTotal = 0
+    for card in deck:
+        sumTotal += transformValues(card)
+    return sumTotal
 
+def transformValues(card):
+    if card == "J":
+        return 11
+    elif card == "Q":
+        return 12
+    elif card == "K":
+        return 13
+    elif card == "A":
+        return 14
+    else:
+        return card
 
 DeckPlayer = [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
 DeckAI = DeckPlayer.copy()
